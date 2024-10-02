@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ak Gym</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; background-image: url('background.jpg'); background-size: cover; background-position: center; color: white; }
+        header { display: flex; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.7); padding: 20px; }
+        .logo img { width: 200px; cursor: pointer; animation: logoAnimation 2s ease-in-out infinite alternate; }
+        @keyframes logoAnimation { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
+        nav { background-color: rgba(0, 0, 0, 0.7); padding: 10px 0; margin-top: 20px; }
+        nav ul { list-style: none; display: flex; justify-content: center; }
+        nav ul li { margin-left: 20px; }
+        nav ul li a { text-decoration: none; color: white; font-weight: bold; font-size: 18px; }
+        nav ul li a:hover { color: #f44336; transition: 0.3s; }
+        section { padding: 50px 20px; margin: 20px; background-color: rgba(0, 0, 0, 0.8); border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); display: none; }
+        h2 { margin-bottom: 10px; }
+        #coach .coach-image { width: 200px; border-radius: 50%; margin-bottom: 10px; }
+        footer { text-align: center; padding: 10px; background-color: rgba(0, 0, 0, 0.7); color: white; position: fixed; bottom: 0; width: 100%; }
+        blockquote { font-style: italic; color: #f44336; margin-top: 10px; }
+        form { display: flex; flex-direction: column; gap: 10px; width: 300px; margin: 0 auto; }
+        input[type="text"], input[type="email"], select { padding: 10px; border-radius: 5px; border: none; }
+        input[type="submit"], button { padding: 10px; background-color: #f44336; border: none; color: white; cursor: pointer; border-radius: 5px; }
+        input[type="submit"]:hover, button:hover { background-color: #ff7961; }
+        .success-message { text-align: center; color: #4caf50; }
+        table { width: 100%; margin-top: 20px; border-collapse: collapse; display: none; }
+        th, td { padding: 10px; border: 1px solid white; text-align: left; }
+        th { background-color: rgba(0, 0, 0, 0.7); }
+        .action-buttons { display: none; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <!-- Header and Logo -->
+    <header>
+        <div class="logo" onclick="location.href='#home'">
+            <img src="https://images.pexels.com/photos/1431282/pexels-photo-1431282.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Gym Logo">
+        </div>
+    </header>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="#home" onclick="showSection('home')">Home</a></li>
+            <li><a href="#timings" onclick="showSection('timings')">Gym Timings</a></li>
+            <li><a href="#rules" onclick="showSection('rules')">Rules</a></li>
+            <li><a href="#coach" onclick="showSection('coach')">About Coach</a></li>
+            <li><a href="#bookhere" onclick="showSection('bookhere')">Book Here</a></li>
+            <li><a href="#developer" onclick="showSection('developer')">Developer</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home">
+        <h2>Welcome to Ak Gym</h2>
+        <p>Your fitness journey starts here!</p>
+    </section>
+
+    <!-- Gym Timings Section -->
+    <section id="timings">
+        <h2>Gym Timings</h2>
+        <p>Monday - Friday: 6:00 AM - 9:00 PM</p>
+        <p>Saturday: 7:00 AM - 5:00 PM</p>
+        <p>Sunday: Closed</p>
+    </section>
+
+    <!-- Rules Section -->
+    <section id="rules">
+        <h2>Rules</h2>
+        <ul>
+            <li>Always wipe down equipment after use.</li>
+            <li>Wear proper gym attire.</li>
+            <li>Respect other gym users.</li>
+            <li>Return weights to their racks after use.</li>
+            <li>No food or drinks on the gym floor.</li>
+        </ul>
+    </section>
+
+    <!-- About Coach Section -->
+    <section id="coach">
+        <h2>About Coach</h2>
+        <img src="https://media.4-paws.org/d/b/0/5/db05d79a7b3002447904b841871363190b45b74d/VIER PFOTEN_2017-10-20_164-3854x2667-1920x1329.webp" alt="Coach Akshay" class="coach-image">
+        <p>Akshay - The Head Coach</p>
+        <p>Mobile: +91 7975004993</p>
+        <blockquote>"Success usually comes to those who are too busy to be looking for it."</blockquote>
+    </section>
+
+    <!-- Book Here Section -->
+    <section id="bookhere">
+        <h2>Book Your Gym Session</h2>
+        <form id="bookingForm">
+            <input type="text" name="name" placeholder="Enter your name" required>
+            <input type="email" name="email" placeholder="Enter your email" required>
+            <label for="gender">Gender:</label>
+            <select name="gender" id="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <input type="submit" value="Book Now">
+        </form>
+        <p class="success-message" id="bookSuccessMessage" style="display: none;"></p>
+    </section>
+
+    <!-- Developer Section -->
+    <section id="developer">
+        <h2>Developer Login</h2>
+        <form id="loginForm" onsubmit="developerLogin(event)">
+            <input type="text" name="username" placeholder="Enter username" required>
+            <input type="password" name="password" placeholder="Enter password" required>
+            <input type="submit" value="Login">
+        </form>
+        <p class="error-message" id="errorMessage" style="color: red; display: none;">Incorrect username or password.</p>
+
+        <!-- Customer Data Table -->
+        <h2 id="customerDataHeading" style="display: none;">Customer Booking Data</h2>
+        <table id="customerData" style="display: none;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <div class="action-buttons" id="actionButtons">
+            <button onclick="deleteAllData()">Delete All Data</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Ak Gym. All rights reserved.</p>
+    </footer>
+
+    <!-- Script -->
+    <script>
+        // Hide all sections except the one that is clicked
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                if (section.id === sectionId) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+
+        // Booking form submission
+        document.getElementById('bookingForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const response = await fetch('/book', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            if (result.success) {
+                document.getElementById('bookSuccessMessage').textContent = 'Congratulations, you have successfully booked in Ak Gym!';
+                document.getElementById('bookSuccessMessage').style.display = 'block';
+                const utterance = new SpeechSynthesisUtterance('Congratulations, you have successfully booked in Ak Gym');
+                window.speechSynthesis.speak(utterance);
+                e.target.reset();
+            }
+        });
+
+        // Developer login form submission
+        async function developerLogin(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const response = await fetch('/developer-login', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            if (result.success) {
+                document.getElementById('customerDataHeading').style.display = 'block';
+                document.getElementById('customerData').style.display = 'block';
+                document.getElementById('actionButtons').style.display = 'block';
+                loadCustomerData();
+            } else {
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        }
+
+        // Load customer data for developer
+        async function loadCustomerData() {
+            const response = await fetch('/get-customers');
+            const data = await response.json();
+            const tbody = document.querySelector('#customerData tbody');
+            tbody.innerHTML = '';
+            data.forEach((customer, index) => {
+                const row = `<tr>
+                                <td>${index + 1}</td>
+                                <td>${customer.name}</td>
+                                <td>${customer.email}</td>
+                                <td>${customer.gender}</td>
+                             </tr>`;
+                tbody.insertAdjacentHTML('beforeend', row);
+            });
+        }
+
+        // Delete all customer data
+        async function deleteAllData() {
+            if (confirm('Are you sure you want to delete all customer data?')) {
+                const response = await fetch('/delete-all-customers', { method: 'POST' });
+                if (response.ok) {
+                    alert('All customer data has been deleted.');
+                    loadCustomerData(); // Refresh the customer data
+                }
+            }
+        }
+    </script>
+</body>
+</html>
